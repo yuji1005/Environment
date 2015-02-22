@@ -2,7 +2,9 @@ setting
 下記ファイルを編集
 vi ~/.zpreztorc
 テーマ
+prompt -p でテーマ一覧の確認ができる
 zstyle ':prezto:module:prompt' theme 'redhat'
+参照: https://github.com/sorin-ionescu/prezto/tree/master/modules
 プラグイン
 zstyle ':prezto:load' pmodule \
   'environment' \
