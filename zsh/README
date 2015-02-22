@@ -1,0 +1,21 @@
+setting
+下記ファイルを編集
+vi ~/.zpreztorc
+テーマ
+zstyle ':prezto:module:prompt' theme 'redhat'
+プラグイン
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'directory' \
+  'spectrum' \
+  'utility' \
+  'completion' \
+  'git' \
+  'haskell' \
+  'node' \
+  'homebrew' \
+  'osx' \
+  'prompt'
