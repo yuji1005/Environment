@@ -3,7 +3,7 @@
 # http://qiita.com/iri/items/2f9a39b9c47320f4c225
 #
 # Antigen を導入
-#git clone https://github.com/zsh-users/antigen.git ~/projects/antigen
+git clone https://github.com/zsh-users/antigen.git ~/projects/antigen
 source ~/projects/antigen/antigen.zsh
 
 # Antigen から Prezto を導入
