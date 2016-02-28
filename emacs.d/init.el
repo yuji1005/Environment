@@ -1031,9 +1031,10 @@ C-uをつけると1レベル上，C-u C-uをつけると1レベル下の見出�
 ;; ---------------------------------------------------------
 ;; sageの設定
 ;; ---------------------------------------------------------
-(add-to-list 'load-path "~/.emacs.d/elisp/sage-mode/emacs/")
-(require 'sage "sage")
-(setq sage-command "/usr/local/bin/sage")
+(when (and (executable-find "sage"))
+  (add-to-list 'load-path "~/.emacs.d/elisp/sage-mode/emacs/")
+  (require 'sage "sage")
+  (setq sage-command "/usr/local/bin/sage"))
 ;; ---------------------------------------------------------
 ;; scalaの設定
 ;; ---------------------------------------------------------
