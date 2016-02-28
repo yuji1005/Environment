@@ -1,6 +1,6 @@
 ;; load-path
-(add-to-list 'load-path "/Users/yuji/.emacs.d/elisp/")
-(let ((default-directory  "/Users/yuji/.emacs.d/elisp/"))
+(add-to-list 'load-path "~/.emacs.d/elisp/")
+(let ((default-directory  "~/.emacs.d/elisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 ;; ---------------------------------------------------------
 ;; エディタ設定
@@ -218,7 +218,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;; ---------------------------------------------------------
 ;; recentf and recentf-ext.el
 (require 'recentf)
-(setq recentf-save-file "/Users/yuji/.emacs.d/.recentf")
+(setq recentf-save-file "~/.emacs.d/.recentf")
 (setq recentf-max-saved-items 1000)            ;; recentf に保存するファイルの数
 (setq recentf-exclude '(".recentf"))           ;; .recentf自体は含まない
 (setq recentf-auto-cleanup 10)                 ;; 保存する内容を整理
@@ -234,7 +234,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   )
 ;; yasnippet
 (require 'yasnippet)
-(yas/load-directory "/Users/yuji/.emacs.d/snippets")
+(yas/load-directory "~/.emacs.d/snippets")
 (yas-global-mode 1)
 ;; 既存スニペットを挿入する
 (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
@@ -373,7 +373,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (ido-ubiquitous-mode 1)
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
-(setq ido-save-directory-list-file "/Users/yuji/.emacs.d/cache/ido.last")
+(setq ido-save-directory-list-file "~/.emacs.d/cache/ido.last")
 (ido-vertical-mode 1)
 (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
 (setq ido-max-window-height 0.75)
@@ -407,7 +407,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;; smex
 (require 'smex)
 (smex-initialize)
-(setq smex-save-file "/Users/yuji/.emacs.d/cache/.smex-items")
+(setq smex-save-file "~/.emacs.d/cache/.smex-items")
 (global-set-key (kbd "M-x") 'smex)
 ;; idomenu
 (autoload 'idomenu "idomenu" nil t)
@@ -582,7 +582,7 @@ C-uをつけると1レベル上，C-u C-uをつけると1レベル下の見出�
 (setenv "PATH"
         (concat (getenv "PATH") ":/Library/TeX/texbin"))
 (unless (getenv "RUST_SRC_PATH")
-      (setenv "RUST_SRC_PATH" (expand-file-name "/Users/yuji/.rust/src")))
+      (setenv "RUST_SRC_PATH" (expand-file-name "~/.rust/src")))
 ;;
 ;; YaTeX
 ;;
@@ -769,9 +769,9 @@ C-uをつけると1レベル上，C-u C-uをつけると1レベル下の見出�
 ;;   (add-to-list 'company-backends 'company-racer))
 ;; Load rust-mode when you open `.rs` files
 ;; Set path to racer binary
-(setq racer-cmd "/Users/yuji/.cargo/bin/racer")
+(setq racer-cmd "~/.cargo/bin/racer")
 ;; Set path-separator to rust src directory
-(setq racer-rust-src-path "/Users/yuji/.rust/src/")
+(setq racer-rust-src-path "~/.rust/src/")
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
@@ -787,7 +787,7 @@ C-uをつけると1レベル上，C-u C-uをつけると1レベル下の見出�
 (add-hook 'haskell-mode-hook #'hindent-mode)
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
-(let ((my-cabal-path (expand-file-name "/Users/yuji/.cabal/bin")))
+(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
   (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
   (add-to-list 'exec-path my-cabal-path))
 (custom-set-variables '(haskell-tags-on-save t))
@@ -814,10 +814,10 @@ C-uをつけると1レベル上，C-u C-uをつけると1レベル下の見出�
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
 (eval-after-load 'haskell-cabal
   '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
-(let ((my-cabal-path (expand-file-name "/Users/yuji/.cabal/bin")))
+(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
   (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
   (add-to-list 'exec-path my-cabal-path))
-(add-to-list 'load-path "/Users/yuji/.cabal/share/x86_64-osx-ghc-7.10.3/ghc-mod-5.5.0.0")
+(add-to-list 'load-path "~/.cabal/share/x86_64-osx-ghc-7.10.3/ghc-mod-5.5.0.0")
 (autoload 'ghc-init "ghc" nil t)
 (autoload 'ghc-debug "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
@@ -875,7 +875,7 @@ C-uをつけると1レベル上，C-u C-uをつけると1レベル下の見出�
     (set-buffer obuf)
     (call-process-region
      (point-min)
-     (point-max) "/Users/yuji/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/rdefs-0.0.2/bin/rdefs" nil buf)
+     (point-max) "~/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/rdefs-0.0.2/bin/rdefs" nil buf)
     (switch-to-buffer-other-window buf)
     (ruby-mode)))
 ;; ruby-refactor
@@ -1031,7 +1031,7 @@ C-uをつけると1レベル上，C-u C-uをつけると1レベル下の見出�
 ;; ---------------------------------------------------------
 ;; sageの設定
 ;; ---------------------------------------------------------
-(add-to-list 'load-path "/Users/yuji/.emacs.d/elisp/sage-mode/emacs/")
+(add-to-list 'load-path "~/.emacs.d/elisp/sage-mode/emacs/")
 (require 'sage "sage")
 (setq sage-command "/usr/local/bin/sage")
 ;; ---------------------------------------------------------
