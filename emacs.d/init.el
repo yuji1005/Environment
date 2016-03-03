@@ -522,9 +522,27 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (set-face-attribute 'company-tooltip-annotation nil
                     :foreground "red")
 ;; ---------------------------------------------------------
+;;  open-junk-fileの設定
+;; ---------------------------------------------------------
+(require 'open-junk-file)
+(setq open-junk-file-format "~/Documents/memo/junk/%Y-%m%d-%H%M%S.")
+(global-set-key "\C-xj" 'open-junk-file)
+;; ---------------------------------------------------------
 ;; org-mode の設定
 ;; ---------------------------------------------------------
 (require 'org)
+(require 'org-habit)
+(require 'ob-C)
+(require 'ob-ruby)
+(setq org-src-fontify-natively t)
+(defun my-org-confirm-babel-evaluate (lang body)
+  (not (or (string= lang "ditaa")
+           (string= lang "emacs-lisp")
+           (string= lang "ruby")
+           (string= lang "C")
+           (string= lang "cpp")
+           )))
+(setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 (defun org-insert-upheading (arg)
   "1レベル上の見出しを入力する"
   (interactive "P")
@@ -558,9 +576,11 @@ C-uをつけると1レベル上，C-u C-uをつけると1レベル下の見出�
          (file+headline nil "New Ideas")
          "** %?\n   %i\n   %a\n   %t")))
 
- (setq org-use-fast-todo-selection t)
- (setq org-todo-keywords
-      '((sequence "TODO(t)"  "STARTED(s)"  "WAITING(w)" "|" "DONE(x)" "CANCEL(c)")
+(setq org-use-fast-todo-selection t)
+;; DONEの時刻を記録
+(setq org-log-done 'time)
+(setq org-todo-keywords
+      '((sequence "TODO(t)"  "STARTED(s)"  "WAITING(w)" "|" "DONE(x)" "CANCEL(c)" "SOMEDAY(d)")
 	(sequence  "APPT(a)" "|" "DONE(x)" "CANCEL(c)")))
 (setq org-default-notes-file "~/memo/plan.org")
 (setq org-agenda-files (list org-default-notes-file))
@@ -717,7 +737,7 @@ C-uをつけると1レベル上，C-u C-uをつけると1レベル下の見出�
                    c-mode)
 (add-to-list 'flycheck-checkers 'c-gcc-ja)
 (flycheck-define-clike-checker c++-g++-ja
-                   ("g++" "-fsyntax-only" "-Wall" "-Wextra" "-std=c++11" "-I/usr/include" "-I/usr/local/include" "-I../include" "-I../common" "-I../dao" "-I../model" "-I../view" "-I../cgi" "-I../tools")
+                   ("g++" "-fsyntax-only" "-Wall" "-Wextra" "-I/usr/include" "-I/usr/local/include" "-I../include" "-I../common" "-I../dao" "-I../model" "-I../view" "-I../cgi" "-I../tools")
                    c++-mode)
 (add-to-list 'flycheck-checkers 'c++-g++-ja)
 ;; semantic-refactoring
