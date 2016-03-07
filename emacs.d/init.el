@@ -137,6 +137,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (el-get-bundle open-junk-file)
 (el-get-bundle summarye)
 (el-get-bundle ipa)
+(el-get-bundle dash-at-point)
 ;; ido関連
 (el-get-bundle nonsequitur/smex)
 (el-get-bundle DarwinAwardWinner/ido-ubiquitous)
@@ -242,6 +243,14 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
 ;; 既存スニペットを閲覧・編集する
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+;; ---------------------------------------------------------
+;; dash-at-point設定
+;; ---------------------------------------------------------
+(when 
+    (autoload 'dash-at-point "dash-at-point"
+      "Search the word at point with Dash." t nil)
+  (global-set-key "\C-cd" 'dash-at-point)
+  (global-set-key "\C-ce" 'dash-at-point-with-docset))
 ;; ---------------------------------------------------------
 ;; ipa設定
 ;; ---------------------------------------------------------
